@@ -1,1 +1,72 @@
-<p>questionnaire works!</p>
+<div class="section col-md-6 offset-md-3  mb-4">
+    <div class="mt-4 mb-4">
+        <h1>Questionnaire</h1>
+    </div>
+    <div class="section-content">
+        <form class="my-form" #questionnaireForm=ngForm (ngSubmit)="submit()" [formGroup]="formGroup">
+            <ng-container *ngTemplateOutlet="loopTemplate; context:{questions: questionnaire}">
+            </ng-container>
+            <div class="text-center mt-4">
+                <button mat-raised-button color="primary" type="submit" [disabled]="!formGroup.valid">Submit</button>
+            </div>
+        </form>
+    </div>
+    <div class="section-footer" *ngIf="showResponse">
+        <h1>Response</h1>
+        <pre>{{responseTemplate | json}}</pre>
+    </div>
+</div>
+
+<ng-template #loopTemplate let-questions="questions">
+    <div *ngFor="let item of questions" class="row ml-4">
+        <ng-container *ngIf="item.type === 'group'">
+            <div class="col-md-12">
+                <h2 class="mb-2">
+                    {{item.text}}
+                </h2>
+            </div>
+            <div class="col-md-12">
+                <ng-container *ngIf="item.type === 'group' && item.item.length">
+                    <ng-container *ngTemplateOutlet="loopTemplate; context: {questions: item.item}">
+                    </ng-container>
+                </ng-container>
+            </div>
+        </ng-container>
+        <ng-container *ngIf="item.type !== 'group'">
+            <div class="col-md-6">
+                <h3 class="mb-2">
+                    {{item.text}}
+                </h3>
+            </div>
+            <div class="col-md-6">
+                <ng-container *ngIf="item.type === 'boolean'">
+                    <mat-radio-group aria-label="Select an option" color="primary" (change)="radioChange($event, item)">
+                        <mat-radio-button class="mr-3" value="true" checked>Yes</mat-radio-button>
+                        <mat-radio-button value="false">No</mat-radio-button>
+                    </mat-radio-group>
+                </ng-container>
+
+                <ng-container *ngIf="item.type === 'string'">
+                    <mat-form-field [formGroup]="formGroup">
+                        <input matInput type="text" [(ngModel)]="item.answer[0].valueString" [formControlName]="item.linkId">
+                        <mat-error *ngIf="formGroup.controls[item.linkId].hasError('required')">Required</mat-error>
+                        <button mat-button *ngIf="item.answer[0].valueString" matSuffix mat-icon-button aria-label="Clear"
+                            (click)="item.answer[0].valueString=''">
+                            <mat-icon>close</mat-icon>
+                        </button>
+                    </mat-form-field>
+                </ng-container>
+
+                <ng-container *ngIf="item.type === 'date'">
+                    <mat-form-field color="primary" [formGroup]="formGroup">
+                        <input matInput [matDatepicker]="datePicker" [formControlName]="item.linkId" (dateChange)="dateChange($event, item)"
+                        (dateInput)="dateChange($event, item)">
+                        <mat-error *ngIf="formGroup.controls[item.linkId].hasError('required')">Invalid date</mat-error>
+                        <mat-datepicker-toggle matSuffix [for]="datePicker"></mat-datepicker-toggle>
+                        <mat-datepicker #datePicker></mat-datepicker>
+                    </mat-form-field>
+                </ng-container>
+            </div>
+        </ng-container>
+    </div>
+</ng-template>

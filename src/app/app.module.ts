@@ -19,6 +19,8 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
 import { AppRoutingModule } from './app-routing.module';
 import { PatientComponent } from './patient/patient.component';
+import {MatSelectModule} from '@angular/material/select';
+import {MatRadioModule} from '@angular/material/radio';
 
 export const DateFormats = {
   parse: {
@@ -53,7 +55,9 @@ export const DateFormats = {
     MatNativeDateModule,
     MatButtonModule,
     MatMomentDateModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    MatSelectModule,
+    MatRadioModule
   ],
   providers: [
     MatNativeDateModule,

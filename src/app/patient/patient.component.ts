@@ -30,7 +30,7 @@ export class PatientComponent implements OnInit {
 
   constructor(
     private apiService: ApiService,
-    private snackBar: MatSnackBar
+    private alertBanner: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -88,7 +88,7 @@ export class PatientComponent implements OnInit {
     config.verticalPosition = 'top';
     config.horizontalPosition = 'center';
 
-    this.snackBar.open(message, null, config);
+    this.alertBanner.open(message, null, config);
   }
 
   search() {
