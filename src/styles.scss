@@ -2,3 +2,18 @@
 
 html, body { height: 100%; }
 body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.alert {
+    white-space: pre-wrap;
+}
+.alert-error {
+    color: #ff4040;
+}
+
+.alert-warning {
+    color: #ff8b11;
+}
+
+.alert-success {
+    color: #00ff00;
+}

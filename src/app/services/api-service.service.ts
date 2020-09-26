@@ -11,8 +11,22 @@ export class ApiService {
     private httpClient: HttpClient
   ) { }
 
-  getPatients() {
-    return this.httpClient.get(environment.queryURI + '/Patient',
+  getPatients(patientName = '', patientBirthday = '') {
+    let requestURI = environment.queryURI + '/Patient?';
+    let requestParams = [];
+    if (!patientName && !patientBirthday) {
+      requestParams.push('birthdate=ge1960-01-01');
+      requestParams.push('birthdate=le1965-12-31');
+    }
+    if (patientName) {
+      requestParams.push('name=' + patientName);
+    }
+    if (patientBirthday) {
+      requestParams.push('birthdate=eq' + patientBirthday);
+    }
+    requestURI += requestParams.join('&');
+
+    return this.httpClient.get(requestURI,
       { headers: this.getHeaders() });
   }
 
