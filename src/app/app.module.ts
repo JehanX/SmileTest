@@ -21,6 +21,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { PatientComponent } from './patient/patient.component';
 import {MatSelectModule} from '@angular/material/select';
 import {MatRadioModule} from '@angular/material/radio';
+import { MenuComponent } from './menu/menu.component';
+import {MatMenuModule} from '@angular/material/menu';
 
 export const DateFormats = {
   parse: {
@@ -38,7 +40,8 @@ export const DateFormats = {
   declarations: [
     AppComponent,
     QuestionnaireComponent,
-    PatientComponent
+    PatientComponent,
+    MenuComponent
   ],
   imports: [
     AppRoutingModule,
@@ -57,7 +60,8 @@ export const DateFormats = {
     MatMomentDateModule,
     ReactiveFormsModule,
     MatSelectModule,
-    MatRadioModule
+    MatRadioModule,
+    MatMenuModule
   ],
   providers: [
     MatNativeDateModule,
