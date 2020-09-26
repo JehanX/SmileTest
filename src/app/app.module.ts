@@ -16,6 +16,9 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule, MAT_DATE_FORMATS } from '@angular/material/core';
 import {MatButtonModule} from '@angular/material/button';
 import { MatMomentDateModule } from '@angular/material-moment-adapter';
+import { QuestionnaireComponent } from './questionnaire/questionnaire.component';
+import { AppRoutingModule } from './app-routing.module';
+import { PatientComponent } from './patient/patient.component';
 
 export const DateFormats = {
   parse: {
@@ -31,9 +34,12 @@ export const DateFormats = {
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    QuestionnaireComponent,
+    PatientComponent
   ],
   imports: [
+    AppRoutingModule,
     FormsModule,
     BrowserModule,
     HttpClientModule,
