@@ -1,3 +1,4 @@
+// tslint:disable
 const patientsTableDefaultData = [
     {
         "id": "1168953",

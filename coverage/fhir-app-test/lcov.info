@@ -308,7 +308,7 @@ TN:
 SF:/Users/zhenhan/Documents/SmileTest/src/mock/getPatientsDefaultOutput.ts
 FNF:0
 FNH:0
-DA:1,1
+DA:2,1
 LF:1
 LH:1
 BRF:0
@@ -318,7 +318,7 @@ TN:
 SF:/Users/zhenhan/Documents/SmileTest/src/mock/getPatientsTotalZeroOutput.ts
 FNF:0
 FNH:0
-DA:1,1
+DA:2,1
 LF:1
 LH:1
 BRF:0
@@ -328,7 +328,7 @@ TN:
 SF:/Users/zhenhan/Documents/SmileTest/src/mock/patientListMissingData.ts
 FNF:0
 FNH:0
-DA:1,1
+DA:2,1
 LF:1
 LH:1
 BRF:0
@@ -338,7 +338,7 @@ TN:
 SF:/Users/zhenhan/Documents/SmileTest/src/mock/patientsTableDefaultData.ts
 FNF:0
 FNH:0
-DA:1,1
+DA:2,1
 LF:1
 LH:1
 BRF:0
@@ -348,7 +348,7 @@ TN:
 SF:/Users/zhenhan/Documents/SmileTest/src/mock/questionnaireInput.ts
 FNF:0
 FNH:0
-DA:1,1
+DA:2,1
 LF:1
 LH:1
 BRF:0
@@ -358,7 +358,7 @@ TN:
 SF:/Users/zhenhan/Documents/SmileTest/src/mock/questionnaireOutput.ts
 FNF:0
 FNH:0
-DA:1,1
+DA:2,1
 LF:1
 LH:1
 BRF:0
@@ -368,7 +368,7 @@ TN:
 SF:/Users/zhenhan/Documents/SmileTest/src/mock/questionnaireWithoutItemInput.ts
 FNF:0
 FNH:0
-DA:1,1
+DA:2,1
 LF:1
 LH:1
 BRF:0
@@ -378,7 +378,7 @@ TN:
 SF:/Users/zhenhan/Documents/SmileTest/src/mock/responseTemplate.ts
 FNF:0
 FNH:0
-DA:1,1
+DA:2,1
 LF:1
 LH:1
 BRF:0
@@ -388,7 +388,7 @@ TN:
 SF:/Users/zhenhan/Documents/SmileTest/src/mock/tableDataMissingData.ts
 FNF:0
 FNH:0
-DA:1,1
+DA:2,1
 LF:1
 LH:1
 BRF:0

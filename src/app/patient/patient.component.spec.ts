@@ -11,7 +11,7 @@ import getPatientsDefaultOutput from 'src/mock/getPatientsDefaultOutput';
 import patientsTableDefaultData from 'src/mock/patientsTableDefaultData';
 import patientListMissingData from 'src/mock/patientListMissingData';
 import tableDataMissingData from 'src/mock/tableDataMissingData';
-import * as moment from "moment";
+import * as moment from 'moment';
 import getPatientsTotalZeroOutput from 'src/mock/getPatientsTotalZeroOutput';
 
 
@@ -19,7 +19,7 @@ describe('PatientComponent', () => {
   let component: PatientComponent;
   let fixture: ComponentFixture<PatientComponent>;
   let alertBannerSpy: any;
-  let alertBannerConfig = new MatSnackBarConfig();
+  const alertBannerConfig = new MatSnackBarConfig();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -33,9 +33,9 @@ describe('PatientComponent', () => {
         HttpClient,
         HttpHandler
       ],
-      declarations: [ PatientComponent ]
+      declarations: [PatientComponent]
     })
-    .compileComponents();
+      .compileComponents();
   }));
 
   beforeEach(() => {
@@ -86,9 +86,10 @@ describe('PatientComponent', () => {
 
   it('load table - connection error', async () => {
     spyOn(component.apiService, 'getPatients')
-    .and.throwError('404');
+      .and.throwError('404');
     await component.loadTable();
-    expect(alertBannerSpy).toHaveBeenCalledWith('No able to establish the connection with the server. Please try again.', null, alertBannerConfig);
+    expect(alertBannerSpy).toHaveBeenCalledWith(
+      'No able to establish the connection with the server. Please try again.', null, alertBannerConfig);
     expect(component.tableData).toEqual([]);
     expect(component.tableLoading).toBeFalse();
   });
@@ -96,7 +97,8 @@ describe('PatientComponent', () => {
   it('prepare table data - has everything', async () => {
     const patientLst = getPatientsDefaultOutput.entry;
     await component.prepareTableData(patientLst);
-    expect(alertBannerSpy).toHaveBeenCalledWith('No able to establish the connection with the server. Please try again.', null, alertBannerConfig);
+    expect(alertBannerSpy).toHaveBeenCalledWith(
+      'No able to establish the connection with the server. Please try again.', null, alertBannerConfig);
     expect(component.tableData).toEqual(patientsTableDefaultData);
   });
 
@@ -127,13 +129,13 @@ describe('PatientComponent', () => {
   });
 
   it('change date - correct format', async () => {
-    const event = {value: moment('2020-09-26')};
+    const event = { value: moment('2020-09-26') };
     await component.dateChange(event);
     expect(component.searchPatientBirthday).toEqual('2020-09-26');
   });
 
   it('change date - different format', async () => {
-    const event = {value: moment('09-26-2020')};
+    const event = { value: moment('09-26-2020') };
     await component.dateChange(event);
     expect(component.searchPatientBirthday).toEqual('2020-09-26');
   });

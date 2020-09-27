@@ -1,3 +1,4 @@
+// tslint:disable
 const responseTemplate = {
     resourceType: 'QuestionnaireResponse',
     id: '', // Unique id for this set of answers

@@ -1,3 +1,4 @@
+// tslint:disable
 const patientListMissingData = [
     {
         "fullUrl": "http://hapi.fhir.org/baseR4/Patient/1203",

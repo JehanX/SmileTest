@@ -24,8 +24,8 @@ export class QuestionnaireComponent implements OnInit {
     subject: { reference: '#patsub' }, // The subject of the questions
     encounter: { reference: 'Encounter/example' }, // Encounter created as part of
     authored: '2013-02-19T14:15:00-05:00', // Date the answers were gathered
-    author: {reference: '#questauth'}, // Person who received and recorded the answers
-    source: {reference: '#source'}, // The person who answered the questions
+    author: { reference: '#questauth' }, // Person who received and recorded the answers
+    source: { reference: '#source' }, // The person who answered the questions
     item: []
   };
 
@@ -40,12 +40,12 @@ export class QuestionnaireComponent implements OnInit {
 
   async loadQuestionnaire() {
     try {
-      const res = await this.httpClient.get('assets/questionnaire.json').toPromise();
+      const res: any = await this.httpClient.get('assets/questionnaire.json').toPromise();
       if (!res.hasOwnProperty('item')) {
         this.showAlert('Failed to parse quesionnaire.', 'alert-error');
         return;
       }
-      this.questionnaire = res['item'];
+      this.questionnaire = res.item;
       this.constructFormGroup(this.questionnaire);
       this.pageLoading = false;
     } catch (error) {
@@ -70,17 +70,17 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   constructFormGroup(items) {
-    for (let item of items) {
+    for (const item of items) {
       if (item.type === 'group') {
         this.constructFormGroup(item.item);
       } else if (item.type === 'string') {
-        item.answer = [{valueString: ''}];
+        item.answer = [{ valueString: '' }];
         this.formGroup.addControl(item.linkId, new FormControl('', [Validators.required]));
       } else if (item.type === 'date') {
-        item.answer = [{valueDate: null}];
+        item.answer = [{ valueDate: null }];
         this.formGroup.addControl(item.linkId, new FormControl('', [Validators.required, this.dateValidate.bind(this)]));
       } else if (item.type === 'boolean') {
-        item.answer = [{valueBoolean: true}];
+        item.answer = [{ valueBoolean: true }];
       }
     }
   }

@@ -1,3 +1,4 @@
+// tslint:disable
 const questionnaireInput = {
     "resourceType": "Questionnaire",
     "id": "f201",

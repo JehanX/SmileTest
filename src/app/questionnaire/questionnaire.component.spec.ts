@@ -9,14 +9,14 @@ import questionnaireInput from 'src/mock/questionnaireInput';
 import questionnaireOutput from 'src/mock/questionnaireOutput';
 import questionnaireWithoutItemInput from 'src/mock/questionnaireWithoutItemInput';
 import { QuestionnaireComponent } from './questionnaire.component';
-import * as moment from "moment";
+import * as moment from 'moment';
 import responseTemplate from 'src/mock/responseTemplate';
 
 describe('QuestionnaireComponent', () => {
   let component: QuestionnaireComponent;
   let fixture: ComponentFixture<QuestionnaireComponent>;
   let alertBannerSpy: any;
-  let alertBannerConfig = new MatSnackBarConfig();
+  const alertBannerConfig = new MatSnackBarConfig();
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -123,17 +123,17 @@ describe('QuestionnaireComponent', () => {
   it('change date - no value', async () => {
     const event = {};
     const item = {
-      "linkId": "2.2",
-      "text": "What is your date of birth?",
-      "type": "date",
-      "answer": [{ valueDate: null }]
+      linkId: '2.2',
+      text: 'What is your date of birth?',
+      type: 'date',
+      answer: [{ valueDate: null }]
     };
     await component.dateChange(event, item);
     expect(item).toEqual({
-      "linkId": "2.2",
-      "text": "What is your date of birth?",
-      "type": "date",
-      "answer": [{ valueDate: '' }]
+      linkId: '2.2',
+      text: 'What is your date of birth?',
+      type: 'date',
+      answer: [{ valueDate: '' }]
     });
     expect(component.showResponse).toBeFalse();
   });
@@ -141,17 +141,17 @@ describe('QuestionnaireComponent', () => {
   it('change date - correct format', async () => {
     const event = {value: moment('2020-09-26')};
     const item = {
-      "linkId": "2.2",
-      "text": "What is your date of birth?",
-      "type": "date",
-      "answer": [{ valueDate: null }]
+      linkId: '2.2',
+      text: 'What is your date of birth?',
+      type: 'date',
+      answer: [{ valueDate: null }]
     };
     await component.dateChange(event, item);
     expect(item).toEqual({
-      "linkId": "2.2",
-      "text": "What is your date of birth?",
-      "type": "date",
-      "answer": [{ valueDate: '2020-09-26' }]
+      linkId: '2.2',
+      text: 'What is your date of birth?',
+      type: 'date',
+      answer: [{ valueDate: '2020-09-26' }]
     });
     expect(component.showResponse).toBeFalse();
   });
@@ -159,17 +159,17 @@ describe('QuestionnaireComponent', () => {
   it('change date - different format', async () => {
     const event = {value: moment('09-26-2020')};
     const item = {
-      "linkId": "2.2",
-      "text": "What is your date of birth?",
-      "type": "date",
-      "answer": [{ valueDate: null }]
+      linkId: '2.2',
+      text: 'What is your date of birth?',
+      type: 'date',
+      answer: [{ valueDate: null }]
     };
     await component.dateChange(event, item);
     expect(item).toEqual({
-      "linkId": "2.2",
-      "text": "What is your date of birth?",
-      "type": "date",
-      "answer": [{ valueDate: '2020-09-26' }]
+      linkId: '2.2',
+      text: 'What is your date of birth?',
+      type: 'date',
+      answer: [{ valueDate: '2020-09-26' }]
     });
     expect(component.showResponse).toBeFalse();
   });
@@ -177,17 +177,17 @@ describe('QuestionnaireComponent', () => {
   it('change radio - true', async () => {
     const event = {value: 'true'};
     const item = {
-      "linkId": "1",
-      "text": "Do you have allergies?",
-      "type": "boolean",
-      "answer": [{ valueBoolean: false }]
+      linkId: '1',
+      text: 'Do you have allergies?',
+      type: 'boolean',
+      answer: [{ valueBoolean: false }]
     };
     await component.radioChange(event, item);
     expect(item).toEqual({
-      "linkId": "1",
-      "text": "Do you have allergies?",
-      "type": "boolean",
-      "answer": [{ valueBoolean: true }]
+      linkId: '1',
+      text: 'Do you have allergies?',
+      type: 'boolean',
+      answer: [{ valueBoolean: true }]
     });
     expect(component.showResponse).toBeFalse();
   });
@@ -195,17 +195,17 @@ describe('QuestionnaireComponent', () => {
   it('change radio - false', async () => {
     const event = {value: 'false'};
     const item = {
-      "linkId": "1",
-      "text": "Do you have allergies?",
-      "type": "boolean",
-      "answer": [{ valueBoolean: true }]
+      linkId: '1',
+      text: 'Do you have allergies?',
+      type: 'boolean',
+      answer: [{ valueBoolean: true }]
     };
     await component.radioChange(event, item);
     expect(item).toEqual({
-      "linkId": "1",
-      "text": "Do you have allergies?",
-      "type": "boolean",
-      "answer": [{ valueBoolean: false }]
+      linkId: '1',
+      text: 'Do you have allergies?',
+      type: 'boolean',
+      answer: [{ valueBoolean: false }]
     });
     expect(component.showResponse).toBeFalse();
   });

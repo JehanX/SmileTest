@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ApiService } from '../../app/services/api-service.service';
 import { MatSnackBar, MatSnackBarConfig } from '@angular/material/snack-bar';
 import { FormControl, Validators } from '@angular/forms';
-import * as moment from "moment";
+import * as moment from 'moment';
 @Component({
   selector: 'app-patient',
   templateUrl: './patient.component.html',
@@ -42,15 +42,15 @@ export class PatientComponent implements OnInit {
     this.startTime = Date.now();
     this.tableLoading = true;
     try {
-      const res = await this.apiService.getPatients(this.searchPatientName, this.searchPatientBirthday).toPromise();
-      
-      if (res.hasOwnProperty('total') && res['total'] === 0) {
+      const res: any = await this.apiService.getPatients(this.searchPatientName, this.searchPatientBirthday).toPromise();
+
+      if (res.hasOwnProperty('total') && res.total === 0) {
         this.tableData = [];
       } else if (!res.hasOwnProperty('total')) {
-          this.showAlert('The format of response is not expected.', 'alert-error');
-          return;
+        this.showAlert('The format of response is not expected.', 'alert-error');
+        return;
       } else {
-        this.prepareTableData(res['entry']);
+        this.prepareTableData(res.entry);
       }
     } catch (error) {
       this.showAlert('No able to establish the connection with the server. Please try again.', 'alert-error');

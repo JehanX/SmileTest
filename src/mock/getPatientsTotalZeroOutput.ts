@@ -1,3 +1,4 @@
+// tslint:disable
 const getPatientsTotalZeroOutput = {
     "resourceType": "Bundle",
     "id": "0ee3ca41-d46d-40de-9a86-64c3c402540d",
