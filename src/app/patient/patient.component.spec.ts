@@ -12,6 +12,7 @@ import patientsTableDefaultData from 'src/mock/patientsTableDefaultData';
 import patientListMissingData from 'src/mock/patientListMissingData';
 import tableDataMissingData from 'src/mock/tableDataMissingData';
 import * as moment from "moment";
+import getPatientsTotalZeroOutput from 'src/mock/getPatientsTotalZeroOutput';
 
 
 describe('PatientComponent', () => {
@@ -59,6 +60,16 @@ describe('PatientComponent', () => {
       );
     await component.loadTable();
     expect(component.tableData).toEqual(patientsTableDefaultData);
+    expect(component.tableLoading).toBeFalse();
+  });
+
+  it('load table - total 0', async () => {
+    spyOn(component.apiService, 'getPatients')
+      .and.returnValue(
+        of(getPatientsTotalZeroOutput)
+      );
+    await component.loadTable();
+    expect(component.tableData).toEqual([]);
     expect(component.tableLoading).toBeFalse();
   });
 

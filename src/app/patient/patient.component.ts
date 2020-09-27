@@ -22,7 +22,7 @@ export class PatientComponent implements OnInit {
   public searchPatientDateForm = new FormControl('', [
     this.dateValidate.bind(this)
   ]);
-  
+
   // Table Settings
   public colName: string[] = ['id', 'firstName', 'lastName', 'gender', 'birthday'];
   public tableData = [];
@@ -43,11 +43,15 @@ export class PatientComponent implements OnInit {
     this.tableLoading = true;
     try {
       const res = await this.apiService.getPatients(this.searchPatientName, this.searchPatientBirthday).toPromise();
-      if (!res.hasOwnProperty('entry')) {
-        this.showAlert('The format of response is not expected.', 'alert-error');
-        return;
+      
+      if (res.hasOwnProperty('total') && res['total'] === 0) {
+        this.tableData = [];
+      } else if (!res.hasOwnProperty('total')) {
+          this.showAlert('The format of response is not expected.', 'alert-error');
+          return;
+      } else {
+        this.prepareTableData(res['entry']);
       }
-      this.prepareTableData(res['entry']);
     } catch (error) {
       this.showAlert('No able to establish the connection with the server. Please try again.', 'alert-error');
     }
@@ -106,10 +110,10 @@ export class PatientComponent implements OnInit {
 
   dateValidate(format = this.dateFormat): any {
     return (control: FormControl): { [key: string]: any } => {
-        const val = moment(control.value, format, true);
-        if (!val.isValid()) {
-          return { invalidDate: true };
-        }
+      const val = moment(control.value, format, true);
+      if (!val.isValid()) {
+        return { invalidDate: true };
+      }
       return null;
     };
   }
