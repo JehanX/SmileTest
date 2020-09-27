@@ -29,8 +29,8 @@ export class PatientComponent implements OnInit {
   public tableLoading = true;
 
   constructor(
-    private apiService: ApiService,
-    private alertBanner: MatSnackBar
+    public apiService: ApiService,
+    public alertBanner: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -43,9 +43,11 @@ export class PatientComponent implements OnInit {
     this.tableLoading = true;
     try {
       const res = await this.apiService.getPatients(this.searchPatientName, this.searchPatientBirthday).toPromise();
-      if (res.hasOwnProperty('entry')) {
-        this.prepareTableData(res['entry']);
+      if (!res.hasOwnProperty('entry')) {
+        this.showAlert('The format of response is not expected.', 'alert-error');
+        return;
       }
+      this.prepareTableData(res['entry']);
     } catch (error) {
       this.showAlert('No able to establish the connection with the server. Please try again.', 'alert-error');
     }

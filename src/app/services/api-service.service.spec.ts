@@ -1,13 +1,21 @@
+import { HttpClient, HttpHandler } from '@angular/common/http';
 import { TestBed } from '@angular/core/testing';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
-import { ApiServiceService } from './api-service.service';
+import { ApiService } from './api-service.service';
 
 describe('ApiServiceService', () => {
-  let service: ApiServiceService;
+  let service: ApiService;
 
   beforeEach(() => {
-    TestBed.configureTestingModule({});
-    service = TestBed.inject(ApiServiceService);
+    TestBed.configureTestingModule({
+      imports: [BrowserAnimationsModule],
+      providers: [
+        HttpClient,
+        HttpHandler
+      ]
+    });
+    service = TestBed.inject(ApiService);
   });
 
   it('should be created', () => {

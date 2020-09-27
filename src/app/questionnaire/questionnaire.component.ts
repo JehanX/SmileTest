@@ -10,7 +10,7 @@ import * as moment from 'moment';
   styleUrls: ['./questionnaire.component.scss']
 })
 export class QuestionnaireComponent implements OnInit {
-  public showResponse;
+  public showResponse = false;
   public pageLoading = true;
   public dateFormat = 'YYYY-MM-DD';
   public questionnaire;
@@ -30,8 +30,8 @@ export class QuestionnaireComponent implements OnInit {
   };
 
   constructor(
-    private httpClient: HttpClient,
-    private alertBanner: MatSnackBar
+    public httpClient: HttpClient,
+    public alertBanner: MatSnackBar
   ) { }
 
   ngOnInit() {
@@ -41,16 +41,16 @@ export class QuestionnaireComponent implements OnInit {
   async loadQuestionnaire() {
     try {
       const res = await this.httpClient.get('assets/questionnaire.json').toPromise();
-      this.questionnaire = res['item'];
       if (!res.hasOwnProperty('item')) {
         this.showAlert('Failed to parse quesionnaire.', 'alert-error');
         return;
       }
+      this.questionnaire = res['item'];
       this.constructFormGroup(this.questionnaire);
+      this.pageLoading = false;
     } catch (error) {
       this.showAlert('Not able to load questionnaire.', 'alert-error');
     }
-    this.pageLoading = false;
   }
 
   showAlert(message: string, alertType) {
@@ -96,6 +96,7 @@ export class QuestionnaireComponent implements OnInit {
   }
 
   dateChange(event, item) {
+    console.log(event);
     item.answer[0].valueDate = '';
     if (event.value) {
       item.answer[0].valueDate = event.value.format(this.dateFormat);
