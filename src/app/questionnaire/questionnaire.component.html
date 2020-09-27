@@ -4,6 +4,7 @@
         <h1>Questionnaire</h1>
     </div>
     <div class="section-content">
+        <mat-spinner *ngIf="pageLoading"></mat-spinner>
         <form class="my-form" #questionnaireForm=ngForm (ngSubmit)="submit()" [formGroup]="formGroup">
             <ng-container *ngTemplateOutlet="loopTemplate; context:{questions: questionnaire}">
             </ng-container>

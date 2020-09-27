@@ -11,6 +11,7 @@ import * as moment from 'moment';
 })
 export class QuestionnaireComponent implements OnInit {
   public showResponse;
+  public pageLoading = true;
   public dateFormat = 'YYYY-MM-DD';
   public questionnaire;
   public formGroup = new FormGroup({});
@@ -49,6 +50,7 @@ export class QuestionnaireComponent implements OnInit {
     } catch (error) {
       this.showAlert('Not able to load questionnaire.', 'alert-error');
     }
+    this.pageLoading = false;
   }
 
   showAlert(message: string, alertType) {
